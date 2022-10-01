@@ -31,6 +31,6 @@ const   int     KART_DATA_BOYUTU = 5;// 8 byte tag + 2 byte versiyon numarası  
 // 10 bayt olan veri 5 bayt olacak şekilde kodlanmış oluyor. Eğer çeksum işlemi doğru sonuç verirse kart numarası 5 bayt
 // olarak hafızada saklanacak.
 const   int     MAX_RFID_ALANI = 500;// 500/5 = 100 farklı kimlik bilgisini tutar.
-const   int     ZAMAN_ASIMI_SURESI = 5000;
+const   int     ZAMAN_ASIMI_SURESI = 5000;//zaman aşımı süresi. 
 
 #endif
