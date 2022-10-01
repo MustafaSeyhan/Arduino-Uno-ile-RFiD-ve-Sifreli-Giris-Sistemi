@@ -1,29 +1,29 @@
-#include <tustakimi.h>
-#include <buzzer_islemleri.h>
+#include "tustakimi.h"
+#include "buzzer_islemleri.h"
 
 extern const    uint8_t         sifre_degistirme_kodu[10];
-extern volatile bool            tusa_basildimi;
 extern volatile uint8_t         basilan_tus;
 extern volatile uint8_t         tustakimi_verisi[10];
-extern volatile uint8_t         kullanici_sifresi[5];
-extern volatile bool            tustakimi_sayaci_kullanilsinmi;
+extern volatile bool            zaman_asimi_sayaci_kullanilsinmi;
 extern volatile unsigned long   eskizaman;
 
+//************************************************************************
+//************************************************************************
 void tustakimi_ara_islemleri(void)
 {
-    eskizaman = millis();        
-    tusa_basildimi=true;    
-    tustakimi_sayaci_kullanilsinmi=true;//???????????????????????????????
+    eskizaman = millis();
+    zaman_asimi_sayaci_kullanilsinmi=true;
     digitalWrite(buzzer,1);
 } 
-
+//************************************************************************
+//************************************************************************
 void tus_takimi_verilerini_bosalt(void)
 {
-          for (int i = 0; i < 10; i++)
-            {
-            tustakimi_verisi[i] = TUS_TAKIMI_BOSLUK_VERISI ; 
-            basilan_tus = TUS_TAKIMI_BOSLUK_VERISI;
-            }           
+    for (int i = 0; i < 10; i++)
+    {
+    tustakimi_verisi[i] = TUS_TAKIMI_BOSLUK_VERISI ; 
+    basilan_tus = TUS_TAKIMI_BOSLUK_VERISI;
+    }           
 }
 //************************************************************************
 //************************************************************************
@@ -205,41 +205,5 @@ Tuş değerleri
             tustakimi_verisi[0] = basilan_tus;            
             return true;
         }
-        return false;
-}
-//************************************************************************
-//************************************************************************
-bool sifre_kontrol(){
-/*
-    tuş takımı verisinin 0. baytı şu anda kare bilgisi ile dolu olduğu için
-    şifre kontrol tustakimi_verisi[] dizisinin 1. baytından başlıyor.
-*/
-   if(tustakimi_verisi[1]==kullanici_sifresi[4] && tustakimi_verisi[2]==kullanici_sifresi[3] &&
-      tustakimi_verisi[3]==kullanici_sifresi[2] && tustakimi_verisi[4]==kullanici_sifresi[1] &&
-      tustakimi_verisi[5]==kullanici_sifresi[0])
-      {
-        return true;
-      }
-      return false;
-
-}
-//************************************************************************
-//************************************************************************
-bool sifre_degistirme_kodu_kontrol(void){
-    bool sifre_degistirme_kodu_dogrumu=true;
-    int j=9;
-    for(int i=0 ; i<10 ; i++)
-    {
-    if(sifre_degistirme_kodu[j] != tustakimi_verisi[i])
-    {
-        sifre_degistirme_kodu_dogrumu=false;
-    }  
-    j--;  
-    }
-
-    if(sifre_degistirme_kodu_dogrumu == true)   
-    {
-        return true;// şifre değiştirme kodu girilmiş.
-    }
         return false;
 }

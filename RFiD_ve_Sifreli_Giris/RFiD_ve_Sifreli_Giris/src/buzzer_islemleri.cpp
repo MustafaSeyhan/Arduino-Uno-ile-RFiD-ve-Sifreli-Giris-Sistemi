@@ -1,6 +1,7 @@
 #include "buzzer_islemleri.h"
 
-
+//*****************************************************************************
+//*****************************************************************************
 void onay_biplemesi(){
     for(int i=0 ; i<3; i++)
     {
@@ -10,9 +11,10 @@ void onay_biplemesi(){
     delay(40);
     }
 }
-
-
-void hata_biplemesi(){
+//*****************************************************************************
+//*****************************************************************************
+void hata_biplemesi()
+{
     uint8_t leddurumukirmizi=0;
     uint8_t leddurmuyesil=0;
     leddurumukirmizi=digitalRead(led_kirmizi);
@@ -32,7 +34,8 @@ void hata_biplemesi(){
     digitalWrite(led_kirmizi,leddurumukirmizi);
     digitalWrite(led_yesil,leddurmuyesil);
 }
-
+//*****************************************************************************
+//*****************************************************************************
 void acilis_biplemesi()
 {
     for(uint16_t i = 75 ; i<=300 ; i=i*2)
@@ -43,7 +46,8 @@ void acilis_biplemesi()
     delay(50); 
     }
 }
-
+//*****************************************************************************
+//*****************************************************************************
 void hata_biplemesi_eeprom_hafiza_doldu(){
     for(int i = 0 ; i<4 ; i++){
     digitalWrite(buzzer,HIGH);
@@ -51,4 +55,4 @@ void hata_biplemesi_eeprom_hafiza_doldu(){
     digitalWrite(buzzer,LOW);
     delay(50);
     }
-}
+} 

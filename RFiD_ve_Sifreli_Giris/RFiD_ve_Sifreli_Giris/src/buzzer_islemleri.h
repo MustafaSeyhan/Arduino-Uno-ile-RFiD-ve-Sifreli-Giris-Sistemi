@@ -1,7 +1,7 @@
 #ifndef __BUZZER
 #define __BUZZER
-#include <Arduino.h>
-#include <tanimlamalar.h>
+#include "Arduino.h"
+#include "tanimlamalar.h"
 
 void onay_biplemesi();
 void hata_biplemesi();
